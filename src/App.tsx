@@ -1,4 +1,4 @@
-import SelectDropdownField from "./stories/SelectDropdownField";
+import SelectDropdownField from "./components/SelectDropdownField";
 
 export default function App() {
   return (
