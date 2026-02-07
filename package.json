@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "build": "vite build",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "@tailwindcss/vite": "^4.1.18",
