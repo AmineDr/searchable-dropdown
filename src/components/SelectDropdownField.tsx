@@ -2,7 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Search, X } from "lucide-react";
 import { createPortal } from "react-dom";
 
-export default function SelectDropdownField(
+type SearchableSelectProps = {
+    label: string;
+    options: Option[];
+    id?: string;
+    multiple?: boolean;
+    withSearch?: boolean;
+    outlined?: boolean;
+    labelOnTop?: boolean;
+    withPortal?: boolean;
+    zIndex?: number;
+    onValuesChange?: (values: string[]) => void
+}
+
+type Option = {
+    label: string;
+    value: string;
+}
+
+export function SelectDropdownField(
         { 
             id="select-dropdown-field",
             label,
@@ -12,6 +30,7 @@ export default function SelectDropdownField(
             withPortal,
             zIndex=1000,
             options,
+            onValuesChange
         }: SearchableSelectProps
     ) {
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
@@ -48,7 +67,10 @@ export default function SelectDropdownField(
 
     useEffect(() => {
         if (!multiple && selectedOptions.length > 1) {
-            setSelectedOptions([selectedOptions[0]]);
+            const v = [selectedOptions[0]];
+            setSelectedOptions(v);
+        } else {
+
         }
     }, [multiple, selectedOptions]);
 
@@ -118,9 +140,11 @@ export default function SelectDropdownField(
                                     if (!multiple) {
                                         setSelectedOptions([option]);
                                         setFocused(false);
+                                        onValuesChange && onValuesChange([option.value]);
                                         return;
                                     }
                                     setSelectedOptions([...selectedOptions, option]);
+                                    onValuesChange && onValuesChange([...selectedOptions.map(o => o.value), option.value]);
                                 }}
                             >
                                 {highlightText(option.label)}
@@ -166,3 +190,5 @@ export default function SelectDropdownField(
         </div>
     </div>
 }
+
+export default SelectDropdownField;
