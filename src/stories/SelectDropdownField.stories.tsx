@@ -19,6 +19,9 @@ export const Search: Story = {
         id: "select-dropdown-field",
         label: "Label",
         withSearch: true,
+        withPortal: true,
+        labelOnTop: true,
+        zIndex: 1000,
         options: [
             {
                 label: "test",
@@ -37,6 +40,32 @@ export const Multiple: Story = {
         id: "select-dropdown-field",
         label: "Label",
         multiple: true,
+        withPortal: true,
+        labelOnTop: true,
+        zIndex: 1000,
+        options: [
+            {
+                label: "test",
+                value: "test"
+            },
+            {
+                label: "test1123123123",
+                value: "test123"
+            }
+        ]
+    }
+}
+
+export const Outlined: Story = {
+    args: {
+        id: "select-dropdown-field",
+        label: "Label",
+        multiple: true,
+        withSearch: true,
+        withPortal: true,
+        labelOnTop: true,
+        outlined: true,
+        zIndex: 1000,
         options: [
             {
                 label: "test",
